@@ -22,6 +22,9 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.route("/player")
+def playerpage():
+    return render_template("player.html")
 # "names" route
 #   List of player names.
 

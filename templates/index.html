@@ -1,57 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<title>Go Player Rating Visualization</title>
-  	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
-  	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GO GAME RANK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
+
 <body>
-	<div class="row">
-      <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-body">Professional Go Players</div>
-          <div class="sample-sidebar">
-              <select id="selSamples">
+<h1><a href="http://www.ejschart.com/"><span class="gray">Overall Go Ratings</span></a></h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4><strong>Select Rank:</strong></h4>
+        <!-- <div id="rankList">
+        </div> -->
+        <select id="ddlViewBy">
+                <option value="1">Top 10</option>
+                <option value="2" selected="selected">Top 20</option>
+                <option value="3">Top 50</option>
               </select>
-              <table>
-                  <tr><td class="bold">Rank</td><td class="rank"></td></tr>
-                  <tr><td class="bold">Rating</td><td class="rating"></td></tr>
-                  <tr><td class="bold">DOB</td><td class="age"></td></tr>
-                  <tr><td class="bold">Nationality</td><td class="location"></td></tr>
-                  <tr><td class="bold">Total Games</td><td class="total"></td></tr>
-                  <tr><td class="bold">Wins</td><td class="wins"></td></tr>
-                  <tr><td class="bold">Losses</td><td class="losses"></td></tr>
-                  <tr><td class="bold">Win Rate</td><td class="rate"></td></tr>
-
-              </table>
+      </div>
+      <div class="col-md-4">
+            <div id="main">
+                    <h4><strong>Basic Information in Bar Chart</strong></h4>
+                            <div id="GoChart" class="chart"></div>
+                        </div>
+                    </div>			
+        <div class="col-md-4">
+                <div id="main">
+                        <h4><strong>Nationality in Pie Chart</strong></h4>
+                                <div id="PieChart" class="chart"></div>
+                            </div>
+                        </div>		              	
             </div>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <i>Choose a player from the dropdown to the left</i>
           </div>
-          <div id="plot"></div>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Nationality</th>
+              <th>Elo</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
-
-  <div class="row">
-      <div class="col-md-8"> </div>
-      <div class="col-md-3" class="row justify-content-end">
-          <div id="chooseanother"></div>
-            <select id="choose"></select>
-      </div>
+    <div class="row">
+      <a href="player">Click here for player information</a>
     </div>
 
-
-    
-    <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+</div>
+  
+  <script src="{{ url_for('static', filename='js/plot01.js') }}"" type="text/javascript"></script>
 </body>
+
+
+
 </html>
