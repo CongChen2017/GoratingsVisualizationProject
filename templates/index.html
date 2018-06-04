@@ -6,17 +6,20 @@
   	<title>Go Player Rating Visualization</title>
   	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
   	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+  	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script> 
 </head>
 <body>
 	<div class="row">
       <div class="col-md-3">
         <div class="panel panel-primary">
-          <div class="panel-body">Go Player Rank</div>
+          <div class="panel-body">Professional Go Players</div>
           <div class="sample-sidebar">
               <select id="selSamples">
               </select>
               <table>
+                  <tr><td class="bold">Rank</td><td class="rank"></td></tr>
                   <tr><td class="bold">Rating</td><td class="rating"></td></tr>
                   <tr><td class="bold">DOB</td><td class="age"></td></tr>
                   <tr><td class="bold">Nationality</td><td class="location"></td></tr>
@@ -29,13 +32,21 @@
             </div>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-body">
             <i>Choose a player from the dropdown to the left</i>
           </div>
           <div id="plot"></div>
         </div>
+      </div>
+    </div>
+
+  <div class="row">
+      <div class="col-md-8"> </div>
+      <div class="col-md-3" class="row justify-content-end">
+          <div id="chooseanother"></div>
+            <select id="choose"></select>
       </div>
     </div>
 
