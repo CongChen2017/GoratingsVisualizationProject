@@ -45,7 +45,46 @@ Plotly.d3.json(endpoint, function(error, response) {
     console.log(response)
     // console.log(response.name)
     // console.log(response.rank)
+    var name_list = [];
+    var elo_list = [];
 
+    for (i=0; i<response.length; i++) {
+        name_list.push(response[i]["Name"]);
+        elo_list.push(response[i]["Elo"]);
+    };
+
+    console.log(name_list);
+    console.log(elo_list);
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var chart = new Chart(ctx,{
+                   type:'bar',
+                   data:{
+                       labels:name_list,
+                       datasets:[{
+                           label:"population",
+                           data:elo_list,
+                       backgroundColor:[
+                       'rgba(255, 99, 132, 0.2)',
+                       'rgba(54, 162, 235, 0.2)',
+                       'rgba(255, 206, 86, 0.2)'
+                       ],
+                       borderWidth:1,
+                       hoverBorderWidth:2
+
+                       }],
+                   },
+                   options:{
+                     
+                       },
+                       legend:{
+                       
+                           }
+                       }
+                   
+               );
+});
     // On select of new sample, add data to the array and chart
     // $selSamples.on('change', optionChanged);
 
@@ -61,7 +100,6 @@ Plotly.d3.json(endpoint, function(error, response) {
     // var $ddBlank = $selSamples.insert("option", ":first-child")
     //     .text("Select...").attr("value", "").attr("selected", true);
     // });
-});
 
 // function BuildDropdown2() {
 //     // Get data from '/names' endpoint
