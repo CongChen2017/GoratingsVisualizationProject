@@ -40,21 +40,45 @@
 
 // function BuildDropdown() {
     // Get data from '/names' endpoint
-endpoint = "/Top10";
+var test;
+
+endpoint = "/Top20";
 Plotly.d3.json(endpoint, function(error, response) {
     console.log(response)
     // console.log(response.name)
     // console.log(response.rank)
     var name_list = [];
     var elo_list = [];
+    var nation_list = [];
 
     for (i=0; i<response.length; i++) {
         name_list.push(response[i]["Name"]);
         elo_list.push(response[i]["Elo"]);
+        nation_list.push(response[i]["Nation"]);
     };
 
-    console.log(name_list);
-    console.log(elo_list);
+    test = nation_list;
+
+    console.log(nation_list);
+
+    
+    var country_count =[];
+    
+
+    var unique_nation = nation_list.filter(function(v,i) { return i==nation_list.lastIndexOf(v); });
+    console.log(unique_nation);
+
+    for (j=0; j<unique_nation.length; j++){
+        var count = 0;
+        for(var i = 0; i < nation_list.length; ++i){
+        if(nation_list[i] == unique_nation[j])
+            count++;
+        }
+        country_count.push(count);
+    };
+
+    console.log(country_count);
+
 
     var ctx = document.getElementById('myChart').getContext('2d');
 

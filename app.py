@@ -4,6 +4,7 @@ from flask import Flask, render_template,request,redirect,url_for, jsonify # For
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
 import pandas as pd
+from collections import Counter
 
 #################################################
 # Database Setup
@@ -26,6 +27,11 @@ def home():
 @app.route("/player")
 def playerpage():
     return render_template("player.html")
+
+@app.route("/team")
+def teampage():
+    return render_template("team.html")
+
 # "names" route
 #   List of player names.
 
@@ -55,6 +61,20 @@ def Top10():
     final_list = PullDataforComparisonChart(10)
     
     return jsonify(final_list)
+
+@app.route('/Top20')
+def Top20():
+
+    final_list = PullDataforComparisonChart(20)
+    
+    return jsonify(final_list)
+
+@app.route('/teamfight/<num>')
+def teamfight(num):
+
+    final_results = team_fight_results(num)
+    
+    return jsonify(final_results)
     
 def PullDataforComparisonChart(rank):
     lst = []
@@ -102,6 +122,71 @@ def PullDataforComparisonChart(rank):
 
     return final_list
 
+# define a function to investigate team fight results
+def team_fight_results(Num):
+    
+    # handle cn players information first
+    all_cn_players=[]
+    all_cn_players.append(list(players.find({"Nation": "cn"}, {"_id":0, "Rank":1, "Name":1, "Games":1})))
+    cn_players = all_cn_players[0][0:int(Num)]
+    cn_players_name = []
+    cn_players_rank = []
+    for i in range(len(cn_players)):
+        cn_players_name.append(cn_players[i]["Name"])
+        cn_players_rank.append(cn_players[i]["Rank"])
+    
+    # handle kr players
+    all_kr_players=[]
+    all_kr_players.append(list(players.find({"Nation": "kr"}, {"_id":0, "Rank":1, "Name":1, "Games":1})))
+    kr_players = all_kr_players[0][0:int(Num)]
+    kr_players_name = []
+    kr_players_rank = []
+    for i in range(len(kr_players)):
+        kr_players_name.append(kr_players[i]["Name"])
+        kr_players_rank.append(kr_players[i]["Rank"])
+        
+    # get historical records
+    final_record = []
+    for j in range(int(Num)):
+        game_index = []
+        game_count =0
+        for i in range(len(cn_players[j]['Games']['Opponent'])):
+            if cn_players[j]['Games']['Opponent'][i] == kr_players_name[j]:
+                game_index.append(i)
+                game_count +=1
+        game_results = []
+        for index in game_index:
+            game_results.append(cn_players[j]['Games']['Result'][index])
+        record = Counter(game_results)
+        record = dict(record)
+
+        if len(record) > 1: 
+            if record['Win'] > record['Loss']:
+                result = 'Win'
+            elif record['Win'] < record['Loss']:
+                result = 'Loss'
+            else:
+                result = 'Draw'
+            record['Result'] = result
+        elif len(record) == 1:
+            record['Result'] = list(record.keys())[0]
+            if record['Result'] == 'Win':
+                record['Loss'] = 0
+            else:
+                record['Win'] = 0
+        else:
+            record['Result'] = 'Draw'
+            record['Win'] = 0
+            record['Loss'] =0
+        record['Count'] = game_count
+        record['cn_name'] = cn_players_name[j]
+        record['cn_rank'] = cn_players_rank[j]
+        record['kr_name'] = kr_players_name[j]
+        record['kr_rank'] = kr_players_rank[j]
+        final_record.append(record)
+    
+    # return record as a list
+    return final_record
 
 # Script execution
 if __name__ == "__main__":

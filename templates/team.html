@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Go Player Rating Visualization</title>
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+  	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script> 
+</head>
+<body>
+	<div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-body">Professional Go Players</div>
+          <div class="sample-sidebar">
+              <select id="selSamples">
+              </select>
+            
+            </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <canvas id="canvas" width="570" height="284" class="chartjs-render-monitor" style="display: block; height: 142px; width: 285px;"></canvas>
+      </div>
+    </div>
+
+  <!-- <div class="row">
+      <div class="col-md-8"> </div>
+      <div class="col-md-3" class="row justify-content-end">
+          <div id="chooseanother"></div>
+            <select id="choose"></select>
+      </div>
+    </div> -->
+
+
+    
+    <script src="{{ url_for('static', filename='js/plots03.js') }}"></script>
+</body>
+</html>
