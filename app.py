@@ -3,6 +3,7 @@
 from flask import Flask, render_template,request,redirect,url_for, jsonify # For flask implementation
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
+import pandas as pd
 
 #################################################
 # Database Setup
@@ -47,6 +48,59 @@ def player(rank):
 
     # Return jsonified results
     return jsonify(park_info[0])
+
+@app.route('/Top10')
+def Top10():
+
+    final_list = PullDataforComparisonChart(10)
+    
+    return jsonify(final_list)
+    
+def PullDataforComparisonChart(rank):
+    lst = []
+    for i in range(1 , rank+1):
+        lst.append(list(players.find({"Rank": str(i)})))
+
+    for dictt in lst[0]:
+            del dictt["_id"]
+    dict_list = {
+        "Birthday": [lst[i][0]['Birthday'] for i in range(len(lst))],
+        'Link': [lst[i][0]['Link'] for i in range(len(lst))],
+        'Name': [lst[i][0]['Name'] for i in range(len(lst))],
+        'Gender': [lst[i][0]['Gender'] for i in range(len(lst))],
+        'Nation': [lst[i][0]['Nation'] for i in range(len(lst))],
+        'Elo': [lst[i][0]['Elo'] for i in range(len(lst))],
+        'Rank': [lst[i][0]['Rank'] for i in range(len(lst))],
+        'Wins': [lst[i][0]['Wins'] for i in range(len(lst))],
+        'Losses': [lst[i][0]['Losses'] for i in range(len(lst))],
+        'Total': [lst[i][0]['Total'] for i in range(len(lst))],
+        'Games': [lst[i][0]['Games'] for i in range(len(lst))]
+    }
+    
+    Games = dict_list['Games']
+    del dict_list['Games']
+    
+    def dictTranform(dict_list):
+        df = pd.DataFrame(dict_list)
+        names = list(df.columns)
+        Outerlst = []
+        for i in range(len(df)):
+            innerList = []
+            for j in range(len(names)):
+                innerList.append(df.loc[i, names[j]])
+            Outerlst.append(dict(zip(names, innerList)))
+        return Outerlst
+    games_list = []
+    for num in range(len(Games)):
+        games_list.append(dictTranform(Games[num]))
+        
+    final_list = dictTranform(dict_list)
+
+    for index in range(len(final_list)):
+        final_list[index]['Games'] = games_list[index]
+
+
+    return final_list
 
 
 # Script execution
