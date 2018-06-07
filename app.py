@@ -206,4 +206,4 @@ def team_fight_results(Num):
 
 # Script execution
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
