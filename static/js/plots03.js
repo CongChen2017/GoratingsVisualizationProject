@@ -51,13 +51,13 @@ $size.on('change', function() {
             // borderColor: window.chartColors.red,
             borderWidth: 1,
             data: wins,
-            xAxisID: 'bar-x-axis'
+            yAxisID: 'bar-y-axis1'
         }, {
             label: 'Losses',
             backgroundColor: 'rgba(0, 0, 255, 0.8)',
             // borderColor: window.chartColors.blue,
             data: losses,
-            xAxisID: 'bar-x-axis'
+            yAxisID: 'bar-y-axis1'
         }]
 
     };
@@ -78,27 +78,35 @@ $size.on('change', function() {
             },
             responsive: true,
             legend: {
-                position: 'right',
+                display: true,
+                position: "bottom",
             },
             scales: {
                 xAxes: [{
                     display: false,
                     stacked: true,
                     id:'bar-x-axis',
+                }],
+                yAxes: [{
+                    display: true,
+                    stacked: true,
+                    id:'bar-y-axis1',
+                    ticks: {
+                    // Include a dollar sign in the ticks
+                    display: true,
+                    autoSkip: false,
+                    beginAtZero: true,
+                    // callback: function(value, index, values) {
+                    //     return '$' + value;
+                    // }
+                }
                 }]
-            },
-            title: {
-                display: true,
-                text: 'Game Record Between Players',
-                fontSize: 18
-            }
-        }
-    }
+    }}
     // $.ajax({}).done(function (response){
     //     chart.data = response;
     //     chart.update();
     // })
-    );
+    });
 
     var table_data = [{
         type: 'table',
