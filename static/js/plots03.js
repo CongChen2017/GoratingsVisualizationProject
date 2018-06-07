@@ -76,6 +76,11 @@ $size.on('change', function() {
                     borderWidth: 2,
                 }
             },
+            title: {
+                display: true,
+                fontSize: 17,
+                text: 'Game Records Between Players'
+            },
             responsive: true,
             legend: {
                 display: true,
