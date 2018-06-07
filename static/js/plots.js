@@ -7,7 +7,7 @@ function BuildDropdown() {
     // Get data from '/names' endpoint
     endpoint = "/names";
     Plotly.d3.json(endpoint, function(error, response) {
-        // console.log(response)
+        console.log(response)
         // console.log(response.name)
         // console.log(response.rank)
 
