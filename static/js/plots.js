@@ -19,8 +19,8 @@ function BuildDropdown() {
             .selectAll('option')
             .data(response).enter()
             .append('option')
-                .attr("value", (d => d.rank))
-                .text(d => d.name);
+                .attr("value", (d => d.Rank))
+                .text(d => d.Name);
         
         // Add a blank option at the top.
         var $ddBlank = $selSamples.insert("option", ":first-child")
@@ -42,8 +42,8 @@ function BuildDropdown2() {
             .selectAll('option')
             .data(response).enter()
             .append('option')
-                .attr("value", (d => d.rank))
-                .text(d => d.name);
+                .attr("value", (d => d.Rank))
+                .text(d => d.Name);
         
         // Add a blank option at the top.
         var $ddBlank = $choose.insert("option", ":first-child")
