@@ -1,5 +1,4 @@
 
-
 var $selSamples = Plotly.d3.select("#selSamples");  // Locate dropdown box containing samples
 var $choose = Plotly.d3.select("#choose");
 var $plotly = Plotly.d3.select('#plot').select(".plotly");

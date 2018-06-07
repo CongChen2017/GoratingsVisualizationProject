@@ -1,0 +1,14 @@
+certifi==2018.1.18
+click==6.7
+Flask==0.12.2
+gunicorn==19.7.1
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+SQLAlchemy==1.2.3
+Werkzeug==0.14.1
+wincertstore==0.2
+pymongo==3.6.1
+pandas==0.20.1
+pandas-datareader==0.6.0
+sortedcollections==0.5.3

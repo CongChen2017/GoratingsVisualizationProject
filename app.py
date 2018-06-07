@@ -9,8 +9,14 @@ from collections import Counter
 #################################################
 # Database Setup
 #################################################
-client = MongoClient('localhost', 27017)    #Configure the connection to the database
-db = client.GOplayers_db    #Select the database
+DB_Name = "goplayers_db"
+DB_HOST = "ds241570.mlab.com"
+DB_PORT = 41570
+DB_USER = "thisiscc"
+DB_PASS = "tomcat1234"
+client = MongoClient(DB_HOST, DB_PORT)    #Configure the connection to the database
+db = client[DB_Name]
+db.authenticate(DB_USER, DB_PASS)    #Select the database
 players = db.players   #Select the collection
 
 #################################################
