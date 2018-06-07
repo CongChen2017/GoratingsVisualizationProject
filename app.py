@@ -44,7 +44,7 @@ def teampage():
 @app.route('/names')
 def names():
     # Query metadata of the 'samples' table 
-    names = players.find({}, {"_id":0,"Name":1,"Rank":1})
+    names = players.find({}, {"_id":0,"Name":1,"Rank":1}).sort("Rank")
     name_list = [(name['Name'], name['Rank']) for name in names]
     players_list = []
     for name in name_list:
