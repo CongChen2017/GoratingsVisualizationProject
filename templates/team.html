@@ -11,21 +11,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script> 
 </head>
 <body>
+	<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+      
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="/" style="background-color: #139992"> <font color="white">Go Players Rating Visualization</font></a>
+	    </div>
+	    
+	    <ul class="nav navbar-nav">
+	      <li><a href="/player">Player Page</a></li>
+	      <li><a href="/team">Team Page</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	
+	<div class="row">
+		<!-- <div class="col-md-1"></div> -->
+		<div class="col-md-5">
+			<p> Team Fight: China VS S. Korea </p>
+		</div>
+	</div>
+
 	<div class="row">
       <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-body">Professional Go Players</div>
-          <div class="sample-sidebar">
-              <select id="selSamples">
-              </select>
-            
-            </div>
-        </div>
+        <div class="input-group">
+		  <span class="input-group-addon" id="basic-addon1">Please input team size</span>
+		  <input type="text" class="form-control" id="teamsize" placeholder="1 to 25" aria-describedby="basic-addon1">
+		</div>
       </div>
       <div class="col-md-8">
         <canvas id="canvas" width="570" height="284" class="chartjs-render-monitor" style="display: block; height: 142px; width: 285px;"></canvas>
       </div>
     </div>
+
+    <div class="row">
+    	<div class="col-md-3"></div>
+    	<div class="col-md-8">
+    		<div id="summary">
+    		
+	    	</div>
+	    </div>
+    	
+    </div>
+</div>
 
   <!-- <div class="row">
       <div class="col-md-8"> </div>

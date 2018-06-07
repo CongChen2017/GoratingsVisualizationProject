@@ -12,6 +12,20 @@
     <script src="https://d3js.org/d3.v4.min.js"></script> 
 </head>
 <body>
+  <div class="container">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="background-color: #139992"> <font color="white">Go Players Rating Visualization</font></a>
+      </div>
+      
+      <ul class="nav navbar-nav">
+        <li><a href="/player">Player Page</a></li>
+        <li><a href="/team">Team Page</a></li>
+      </ul>
+    </div>
+  </nav>
 	<div class="row">
       <div class="col-md-3">
         <div class="panel panel-primary">
@@ -33,9 +47,9 @@
             </div>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div class="panel panel-default">
-          <div class="panel-body">
+          <div class="panel-body" id="PlayerName">
             <i>Choose a player from the dropdown to the left</i>
           </div>
           <div id="plot"></div>
@@ -68,6 +82,7 @@
             <div id="bar"></div>   
         </div>
     </div>
+  </div>
     
 
 

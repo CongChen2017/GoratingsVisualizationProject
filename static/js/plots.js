@@ -99,7 +99,7 @@ function buildLineChart(player) {
          $sidebar.select(".rate").text(rate+"%");
 
          // Place sample name in header
-         Plotly.d3.select(".col-md-8").select(".panel-body").text("Name: " + response.Name);  
+         Plotly.d3.select(".col-md-9").select("#PlayerName").text("Name: " + response.Name);  
 
 
          var trace = {

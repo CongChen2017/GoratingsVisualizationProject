@@ -69,6 +69,13 @@ def Top20():
     
     return jsonify(final_list)
 
+@app.route('/Top50')
+def Top50():
+
+    final_list = PullDataforComparisonChart(50)
+    
+    return jsonify(final_list)
+
 @app.route('/teamfight/<num>')
 def teamfight(num):
 

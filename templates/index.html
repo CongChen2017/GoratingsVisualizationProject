@@ -14,28 +14,43 @@
 </head>
 
 <body>
-<h1><a href="http://www.ejschart.com/"><span class="gray">Overall Go Ratings</span></a></h1>
   <div class="container">
+    <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/" style="background-color: #139992"> <font color="white">Go Players Rating Visualization</font></a>
+        </div>
+        
+        <ul class="nav navbar-nav">
+          <li><a href="/player">Player Page</a></li>
+          <li><a href="/team">Team Page</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="row">
       <div class="col-md-4">
         <h4><strong>Select Rank:</strong></h4>
         <!-- <div id="rankList">
         </div> -->
         <select id="ddlViewBy">
+                <option value="" selected="selected">Select...</option>
                 <option value="1">Top 10</option>
-                <option value="2" selected="selected">Top 20</option>
+                <option value="2">Top 20</option>
                 <option value="3">Top 50</option>
               </select>
+        <div id="tabletable"></div>
       </div>
       <div class="col-md-4">
             <div id="main">
                     <h4><strong>Basic Information in Bar Chart</strong></h4>
                             <div id="GoChart" class="chart"></div>
-                            <canvas id="myChart"></canvas>
+                            <canvas id="myChart" width="200" height="300"></canvas>
                         </div>
                     </div>			
         <div class="col-md-4">
-                <div id="main">
+                <div id="Pie">
                         <h4><strong>Nationality in Pie Chart</strong></h4>
                                 <div id="PieChart" class="chart"></div>
                             </div>
@@ -43,29 +58,8 @@
             </div>
           </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Nationality</th>
-              <th>Elo</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <a href="player">Click here for player information</a>
-    </div>
 
-    <div class="row">
-      <a href="team">Click here for team fight information</a>
-    </div>
+
 
 </div>
   
