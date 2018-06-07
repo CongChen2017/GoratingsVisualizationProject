@@ -44,13 +44,14 @@ def teampage():
 @app.route('/names')
 def names():
     # Query metadata of the 'samples' table 
-    names = players.find({}, {"_id":0,"Name":1,"Rank":1}).sort("Rank")
+    names = players.find({}, {"_id":0,"Name":1,"Rank":1})
     name_list = [(name['Name'], name['Rank']) for name in names]
     players_list = []
     for name in name_list:
-        players_list.append({"name": name[0], "rank": name[1]})
+        players_list.append({"Name": name[0], "Rank": name[1]})
+    sorted_list = sorted(players_list, key=lambda player: int(player['Rank']))
     # Return jsonified results
-    return jsonify(players_list)
+    return jsonify(sorted_list)
 
 @app.route('/players/<rank>')
 def player(rank):
@@ -141,7 +142,8 @@ def team_fight_results(Num):
     # handle cn players information first
     all_cn_players=[]
     all_cn_players.append(list(players.find({"Nation": "cn"}, {"_id":0, "Rank":1, "Name":1, "Games":1})))
-    cn_players = all_cn_players[0][0:int(Num)]
+    sorted_cn_players = sorted(all_cn_players, key=lambda player: int(player['Rank']))
+    cn_players = sorted_cn_players[0][0:int(Num)]
     cn_players_name = []
     cn_players_rank = []
     for i in range(len(cn_players)):
@@ -151,7 +153,8 @@ def team_fight_results(Num):
     # handle kr players
     all_kr_players=[]
     all_kr_players.append(list(players.find({"Nation": "kr"}, {"_id":0, "Rank":1, "Name":1, "Games":1})))
-    kr_players = all_kr_players[0][0:int(Num)]
+    sorted_kr_players = sorted(all_kr_players, key=lambda player: int(player['Rank']))
+    kr_players = sorted_kr_players[0][0:int(Num)]
     kr_players_name = []
     kr_players_rank = []
     for i in range(len(kr_players)):
