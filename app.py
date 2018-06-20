@@ -13,7 +13,7 @@ DB_Name = "goplayers_db"
 DB_HOST = "ds241570.mlab.com"
 DB_PORT = 41570
 DB_USER = "thisiscc"
-DB_PASS = "tomcat1234"
+DB_PASS = "tomcat0310"
 client = MongoClient(DB_HOST, DB_PORT)    #Configure the connection to the database
 db = client[DB_Name]
 db.authenticate(DB_USER, DB_PASS)    #Select the database
