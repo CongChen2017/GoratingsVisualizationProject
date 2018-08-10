@@ -24,7 +24,7 @@ function myFunction() {
     // console.log(endpoint);
     }
 
-endpoint = "/Top10";
+var endpoint = "/Top10";
 buildtable(endpoint);
 
 function buildtable(endpoint) {
